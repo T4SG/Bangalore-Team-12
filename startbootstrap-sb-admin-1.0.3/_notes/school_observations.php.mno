@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset1" value="name:books_library;datatype:int,name:compslab;datatype:int,name:fire_ext;datatype:int,name:health;datatype:int,name:hygiene;datatype:int,name:infra;datatype:int,name:labs;datatype:int,name:sanitation;datatype:int" />
+</info>
