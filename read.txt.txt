@@ -1,5 +1,8 @@
 Team 12
 Code for Good fcvghjk
 hello
+<<<<<<< HEAD
 
-hello everyone
+=======
+haha
+>>>>>>> origin/master
