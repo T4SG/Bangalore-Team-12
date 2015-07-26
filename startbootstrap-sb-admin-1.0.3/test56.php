@@ -2,19 +2,7 @@
 <html lang="en">
 
 <head>
-
-<?php
-   $con= new mysqli('localhost','root','code4good','isli') or die("Could not connect!");
-
-$username = mysqli_real_escape_string($con, $_POST['mentorid']);
-$password=mysqli_real_escape_string($con, $_POST['mentorpwd']);
-$sql = "SELECT * FROM Mentor_Reg where userName='$username' and password='$password'";
-$schools = "SELECT * FROM school where Mentoid = '$username'";
-if (!mysqli_query($con,$sql)) {
-  die('Error: ' . mysqli_error($con));
-}   
-?>
-
+   
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +10,7 @@ if (!mysqli_query($con,$sql)) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>MENTOR LOGIN </title>
+    <title>ISLI LOGIN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,21 +18,14 @@ if (!mysqli_query($con,$sql)) {
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"></head>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
+<body onload = "init()">
+ <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -56,10 +37,10 @@ if (!mysqli_query($con,$sql)) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">ISLI HOME</a>
             </div>
             <!-- Top Menu Items -->
-          <!--  <ul class="nav navbar-right top-nav">
+            <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
@@ -70,10 +51,10 @@ if (!mysqli_query($con,$sql)) {
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        <h5 class="media-heading"><strong>My Account</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p> CONTENT 1</p>
                                     </div>
                                 </div>
                             </a>
@@ -141,7 +122,7 @@ if (!mysqli_query($con,$sql)) {
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> My Account <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -158,10 +139,13 @@ if (!mysqli_query($con,$sql)) {
                         </li>
                     </ul>
                 </li>
-            </ul>-->
+            </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+				<li  class="active">
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
                     <li>
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
@@ -171,12 +155,10 @@ if (!mysqli_query($con,$sql)) {
                     <li>
                         <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
                     </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                    </li>
+                    
                     <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                     </li>
@@ -202,40 +184,114 @@ if (!mysqli_query($con,$sql)) {
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper" align="center">
+        <div id="page-wrapper">
 
-            <div class="container-fluid" align="center">
+            <div class="container-fluid">
 
-                <h1>MENTOR LOGIN</h1>
-				<br />
-                <div class="row" align="center">
-                    <div class="col-lg-6" align="center">
+                <!-- Page Heading -->
+                <div class="row">
+                    <blockquote>&nbsp;</blockquote>
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                          
+                        </h1>
+						
+						<p align="center"> 
+						
+						<h3 align="center">SCHOOL LIST</h3> 
+						<!-- <table width="100%" border="1" cellspacing="20" cellpadding="10">
+  <tr>
+    <th scope="col">SCHOOL NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    <th scope="col">SCHOOL LEADER NAME&nbsp;</th>
+    <th scope="col">LAST VISIT&nbsp;</th>
+    <th scope="col">NEXT VISIT&nbsp;</th>
+  </tr>
+  <tr>
+    <td><a href="index.html">a&nbsp;</a></td>
+    
+	<td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="index.html">b&nbsp;</a></td>
+    
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="index.html">c&nbsp;</a></td>
+    
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="index.html">D&nbsp;</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table> < -->
 
-                        <form role="form" align="center" action="mLogin.php" method="POST">
-
-                            <div class="form-group" align="center">
-                                <label>ENTER USERNAME : </label> <input type="text" id="mentorid" name="mentorid" align="center"/>
-                                
-                            </div>
-
-                            <div class="form-group">
-                                <label>ENTER PASSWORD : </label> <input type="password" id="mentorpwd" name="mentorpwd" align="center" />
-								
-                                
-                            </div>
-							<div>
-					 <button type="submit" class="btn btn-default">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-default">Reset</button>
-                          </div>
-						 
-                        </form>
-					
+						
+						
+						
+						
+						
+						
+						
+						
+						
                     </div>
-                    
+              </div>
+                <!-- /.row
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+                        </div>
+                    </div>
                 </div>
                 <!-- /.row -->
+		<?php
+		
+		foreach($schools as $row)
+		{?>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">2/7</div>
+                                        <div><?php echo "$row['school_name']" ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="details.html">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+<?php			}
 
+?>		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                    
+					  
+				</p>
             </div>
+			
             <!-- /.container-fluid -->
 
         </div>
@@ -249,6 +305,11 @@ if (!mysqli_query($con,$sql)) {
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
 
 </body>
 
