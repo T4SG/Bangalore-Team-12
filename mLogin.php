@@ -3,7 +3,9 @@
 
 <head>
     <?php
-   $con= new mysqli('localhost','ubuntu','code4good','isli') or die("Could not connect!");
+   $con= new mysqli('localhost','root','code4good','isli') or die("Could not connect!");
+
+   mysqli_select_db()
 
 $username = mysqli_real_escape_string($con, $_POST['Username']);
 $password=mysqli_real_escape_string($con, $_POST['Password']);
