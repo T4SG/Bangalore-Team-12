@@ -3,15 +3,17 @@
 
 <head>
     <?php
-   $con= new mysqli('localhost','root','','isli') or die("Could not connect!");
+   $con= new mysqli('localhost','ubuntu','code4good','isli') or die("Could not connect!");
 
 $username = mysqli_real_escape_string($con, $_POST['Username']);
 $password=mysqli_real_escape_string($con, $_POST['Password']);
 $sql = "SELECT * FROM Mentor_Reg where userName='$username' and password='$password'";
 $schools = "SELECT * FROM school where Mentoid = '$username'";
+
 if (!mysqli_query($con,$sql)) {
   die('Error: ' . mysqli_error($con));
 }   
+$result=msqli_query($con,$schools);
 ?>
 
     <meta charset="utf-8">
@@ -268,7 +270,7 @@ if (!mysqli_query($con,$sql)) {
                 </div>
                 <!-- /.row -->
 		<?php
-		foreach($schools as $row)
+		foreach($result as $row)
 		{?>
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
