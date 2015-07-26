@@ -196,7 +196,7 @@
                 <h1>MENTOR REGISTRATION</h1>
 				<br />
 				
-				<form align="center">
+				<form align="center" action ="menReg.php" method = "POST" >
 				<!-- action="#" name="StudentRegistration" onsubmit="return(validate());"> -->
 
 <table cellpadding="2" width="50%" bgcolor="99FFFF" align="center"  cellspacing="79px">
@@ -209,7 +209,7 @@
 
 <tr>
 <td align="left">First Name</td>
-<td><input type=text name=textnames id="Mfname" size="30"></td>
+<td><input type=text name="textnames" id="Mfname" size="30"></td>
 </tr>
 
 <tr>
@@ -220,7 +220,17 @@
 <td  align="left">Mail Id</td>
 <td><input type="text" name="Mmail" id="mail" size="30"></td>
 </tr>
+<?php
+   $con= new mysqli('localhost','root','','isli') or die("Could not connect!");
 
+$username = mysqli_real_escape_string($con, $_POST['Username']);
+$password=mysqli_real_escape_string($con, $_POST['Password']);
+$sql = "SELECT * FROM Mentor_Reg where userName='$username' and password='$password'";
+$schools = "SELECT * FROM school where Mentoid = '$username'";
+if (!mysqli_query($con,$sql)) {
+  die('Error: ' . mysqli_error($con));
+}   
+?> 
 <tr>
 <td  align="left">Phone Number</td>
 <td><input type="text" name="Mphno" id="phno" size="30"></td>
